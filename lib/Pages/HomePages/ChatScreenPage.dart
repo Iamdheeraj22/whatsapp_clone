@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+
+class ChatScreenPage extends StatefulWidget {
+  ChatScreenPage({Key? key}) : super(key: key);
+
+  @override
+  State<ChatScreenPage> createState() => _ChatScreenPageState();
+}
+
+class _ChatScreenPageState extends State<ChatScreenPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        floatingActionButton:
+            FloatingActionButton(onPressed: () {}, child: Icon(Icons.chat)));
+  }
+}
