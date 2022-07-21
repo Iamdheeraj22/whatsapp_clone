@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomChatCard.dart';
 import 'package:whatsapp_clone/Model/ChatModel.dart';
+import 'package:whatsapp_clone/Screens/IndividualChatScreen.dart';
 
 class ChatScreenPage extends StatefulWidget {
   ChatScreenPage({Key? key}) : super(key: key);
@@ -15,21 +16,32 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
         name: "Mahendra Bahubali",
         lastMsg: "Hii , dude",
         time: "15:09",
-        isGroup: false),
+        isGroup: false,
+        allRead: true),
     ChatModel(
-        name: "Situ", lastMsg: "Hii , dude", time: "15:09", isGroup: false),
+        name: "Situ",
+        lastMsg: "Hii , dude",
+        time: "15:09",
+        isGroup: false,
+        allRead: true),
     ChatModel(
         name: "Mongodb Developers",
         lastMsg: "Hii ,all developers",
         time: "15:09",
-        isGroup: true),
+        isGroup: true,
+        allRead: true),
     ChatModel(
         name: "Google Developers",
         lastMsg: "Hii , buddies",
         time: "15:09",
+        allRead: false,
         isGroup: true),
     ChatModel(
-        name: "Bahubali", lastMsg: "Hii , dude", time: "15:09", isGroup: false),
+        name: "Bahubali",
+        lastMsg: "Hii , dude",
+        time: "15:09",
+        isGroup: false,
+        allRead: true),
   ];
   @override
   Widget build(BuildContext context) {

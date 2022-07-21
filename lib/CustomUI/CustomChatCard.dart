@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/Model/ChatModel.dart';
+import 'package:whatsapp_clone/Screens/IndividualChatScreen.dart';
 
 class CustomChatCard extends StatelessWidget {
   CustomChatCard({Key? key, required this.chatModel}) : super(key: key);
@@ -7,7 +10,12 @@ class CustomChatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => IndividualChatScreen(
+                  chatModel: chatModel,
+                )));
+      },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 5.0),
         child: ListTile(
@@ -27,7 +35,11 @@ class CustomChatCard extends StatelessWidget {
             ),
             subtitle: Row(
               children: [
-                Icon(Icons.done_all),
+                Container(
+                  child: chatModel.allRead
+                      ? Icon(Icons.done)
+                      : Icon(Icons.done_all),
+                ),
                 SizedBox(
                   width: 5,
                 ),
