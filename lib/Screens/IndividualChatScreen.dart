@@ -14,7 +14,21 @@ class IndividualChatScreen extends StatefulWidget {
 }
 
 class _IndividualChatScreenState extends State<IndividualChatScreen> {
+  FocusNode focusNode = FocusNode();
   bool show = false;
+  TextEditingController _controller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        setState(() {
+          show = false;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -82,60 +96,82 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
         body: Container(
           height: phoneHeight(context),
           width: phoneWidth(context),
-          child: Stack(
-            children: [
-              ListView(),
-              Padding(
-                padding: const EdgeInsets.only(left: 5, bottom: 8.0),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                              width: phoneWidth(context) - 55,
-                              child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(55)),
-                                  child: TextFormField(
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          prefixIcon: IconButton(
-                                            icon: Icon(Icons.emoji_emotions),
-                                            onPressed: () {
-                                              setState(() {
-                                                show = !show;
-                                              });
-                                            },
-                                          ),
-                                          suffixIcon: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              IconButton(
-                                                  onPressed: () {},
-                                                  icon:
-                                                      Icon(Icons.attach_file)),
-                                              IconButton(
-                                                  onPressed: () {},
-                                                  icon: Icon(Icons.camera_alt))
-                                            ],
-                                          ),
-                                          contentPadding: EdgeInsets.all(13),
-                                          hintText: "type a message...")))),
-                          customBox(height: 3),
-                          CircleAvatar(
-                              child: IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.mic)))
-                        ],
-                      ),
-                      show ? emojiSelection() : Container()
-                    ],
+          child: WillPopScope(
+            child: Stack(
+              children: [
+                ListView(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5, bottom: 8.0),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                                width: phoneWidth(context) - 55,
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(55)),
+                                    child: TextFormField(
+                                        controller: _controller,
+                                        focusNode: focusNode,
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            prefixIcon: IconButton(
+                                              icon: const Icon(
+                                                  Icons.emoji_emotions),
+                                              onPressed: () {
+                                                focusNode.unfocus();
+                                                focusNode.canRequestFocus =
+                                                    false;
+                                                setState(() {
+                                                  show = !show;
+                                                });
+                                              },
+                                            ),
+                                            suffixIcon: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                IconButton(
+                                                    onPressed: () {},
+                                                    icon: const Icon(
+                                                        Icons.attach_file)),
+                                                IconButton(
+                                                    onPressed: () {},
+                                                    icon: const Icon(
+                                                        Icons.camera_alt))
+                                              ],
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsets.all(13),
+                                            hintText: "type a message...")))),
+                            customBox(height: 3),
+                            CircleAvatar(
+                                child: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.mic)))
+                          ],
+                        ),
+                        show ? emojiSelection() : Container()
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
+            onWillPop: () {
+              if (show) {
+                setState(() {
+                  show = false;
+                });
+              } else {
+                Navigator.pop(context);
+              }
+              return Future.value(false);
+            },
           ),
         ),
       ),
@@ -149,6 +185,9 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
       child: EmojiPicker(
           onEmojiSelected: (category, emoji) {
             print(emoji);
+            setState(() {
+              _controller.text = _controller.text + emoji.emoji;
+            });
           },
           onBackspacePressed: () {},
           config: Config(
