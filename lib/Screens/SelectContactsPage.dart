@@ -3,6 +3,7 @@ import 'package:whatsapp_clone/CustomUI/ContactCard.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Model/ChatModel.dart';
 import 'package:whatsapp_clone/Screens/ContactsHelpPage.dart';
+import 'package:whatsapp_clone/Screens/Group/SelectGroupMember.dart';
 
 class SelectContactsPage extends StatefulWidget {
   SelectContactsPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           PopupMenuButton(onSelected: (value) {
             if (value == 3) {
               Navigator.of(context).push(
@@ -39,16 +40,16 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
             }
           }, itemBuilder: (context) {
             return [
-              PopupMenuItem(
+              const PopupMenuItem(
                   value: Icons.signal_cellular_0_bar_rounded,
                   child: Text("Invite a friend")),
-              PopupMenuItem(value: 1, child: Text("Contacts")),
-              PopupMenuItem(value: 2, child: Text("Refresh")),
-              PopupMenuItem(value: 3, child: Text("Help")),
+              const PopupMenuItem(value: 1, child: Text("Contacts")),
+              const PopupMenuItem(value: 2, child: Text("Refresh")),
+              const PopupMenuItem(value: 3, child: Text("Help")),
             ];
           })
         ],
-        title: Text(
+        title: const Text(
           "Select Contacts",
           style: TextStyle(fontSize: 17),
         ),
@@ -61,57 +62,51 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               customBox(height: 10),
-              Padding(
-                padding: EdgeInsets.only(left: 10, right: 15),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.blue,
-                      child: Icon(
-                        Icons.group,
-                        color: Colors.white,
-                      ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SelectGroupMember()));
+                },
+                child: const ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.blue,
+                    child: Icon(
+                      Icons.group,
+                      color: Colors.white,
                     ),
-                    customBox(width: 15),
-                    Text(
-                      "New group",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    )
-                  ],
+                  ),
+                  title: Text(
+                    "New group",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              customBox(height: 10),
+              InkWell(
+                onTap: () {},
+                child: ListTile(
+                  leading: const CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.blue,
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                  ),
+                  title: const Text(
+                    "New contact",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                  trailing: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.qr_code,
+                        size: 35,
+                      )),
                 ),
               ),
               customBox(height: 20),
-              Padding(
-                padding: EdgeInsets.only(left: 10, right: 15),
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.blue,
-                      child: Icon(
-                        Icons.person,
-                        color: Colors.white,
-                      ),
-                    ),
-                    customBox(width: 15),
-                    const Text(
-                      "New contact",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                    const Spacer(),
-                    InkWell(
-                        onTap: () {},
-                        child: const Icon(
-                          Icons.qr_code,
-                          size: 35,
-                        ))
-                  ],
-                ),
-              ),
-              customBox(height: 25),
               const Padding(
                 padding: const EdgeInsets.only(left: 17.0),
                 child: Text(
@@ -122,7 +117,7 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
               ),
               customBox(height: 10),
               ListView.builder(
-                physics: ClampingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: contactList!.length,
                 itemBuilder: (context, index) {
@@ -132,8 +127,8 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
                 },
               ),
               customBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 17.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 17.0),
                 child: Text(
                   "Invite to Whatsapp",
                   style: TextStyle(
@@ -142,7 +137,7 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
               ),
               customBox(height: 10),
               ListView.builder(
-                physics: ClampingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: contactList!.length,
                 itemBuilder: (context, index) {
@@ -155,7 +150,7 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
               //Share invite link
               InkWell(
                 onTap: () {},
-                child: ListTile(
+                child: const ListTile(
                   title: Text(
                     "Share invite link",
                     style: TextStyle(fontSize: 15),
@@ -173,7 +168,7 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
               customBox(height: 15),
               InkWell(
                 onTap: () {},
-                child: ListTile(
+                child: const ListTile(
                   title: Text(
                     "Contacts help",
                     style: TextStyle(fontSize: 15),
