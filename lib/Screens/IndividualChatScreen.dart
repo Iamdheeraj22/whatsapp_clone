@@ -33,170 +33,166 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: Color.fromARGB(255, 202, 218, 245),
-        appBar: AppBar(
-          actions: [
-            Icon(Icons.videocam),
-            customBox(width: 20),
-            Icon(Icons.call),
-            PopupMenuButton(itemBuilder: (context) {
-              return [
-                PopupMenuItem(child: Text("View contact")),
-                PopupMenuItem(child: Text("Media, links, and docs")),
-                PopupMenuItem(child: Text("Search")),
-                PopupMenuItem(child: Text("Disappearing messages")),
-                PopupMenuItem(child: Text("Wallpaper")),
-                PopupMenuItem(child: Text("More"))
-              ];
-            })
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Color.fromARGB(255, 202, 218, 245),
+      appBar: AppBar(
+        actions: [
+          Icon(Icons.videocam),
+          customBox(width: 20),
+          Icon(Icons.call),
+          PopupMenuButton(itemBuilder: (context) {
+            return [
+              PopupMenuItem(child: Text("View contact")),
+              PopupMenuItem(child: Text("Media, links, and docs")),
+              PopupMenuItem(child: Text("Search")),
+              PopupMenuItem(child: Text("Disappearing messages")),
+              PopupMenuItem(child: Text("Wallpaper")),
+              PopupMenuItem(child: Text("More"))
+            ];
+          })
+        ],
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              widget.chatModel.name,
+              style: TextStyle(fontSize: 17),
+            ),
+            Text(
+              "last seen today at 18:05",
+              style: TextStyle(fontSize: 14),
+            )
           ],
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                widget.chatModel.name,
-                style: TextStyle(fontSize: 17),
+        ),
+        leadingWidth: 80,
+        leading: Row(
+          children: [
+            customBox(width: 5),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.arrow_back,
+                  ),
+                  customBox(width: 5),
+                  CircleAvatar(
+                    backgroundColor: Colors.blueGrey,
+                    radius: 23,
+                    child: Icon(
+                      widget.chatModel.isGroup ? Icons.group : Icons.person,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                "last seen today at 18:05",
-                style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+      ),
+      body: Container(
+        height: phoneHeight(context),
+        width: phoneWidth(context),
+        child: WillPopScope(
+          child: Stack(
+            children: [
+              ListView(),
+              Padding(
+                padding: const EdgeInsets.only(left: 5, bottom: 8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        child: _showattach ? options() : null,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                              width: phoneWidth(context) - 55,
+                              child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(55)),
+                                  child: TextFormField(
+                                      controller: _controller,
+                                      focusNode: focusNode,
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          prefixIcon: IconButton(
+                                            icon: const Icon(
+                                                Icons.emoji_emotions),
+                                            onPressed: () {
+                                              setState(() {
+                                                focusNode.unfocus();
+                                                focusNode.canRequestFocus =
+                                                    false;
+                                                Future.delayed(
+                                                    Duration(seconds: 5), () {
+                                                  show = !show;
+                                                  _showattach = false;
+                                                });
+                                              });
+                                            },
+                                          ),
+                                          suffixIcon: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () {
+                                                    focusNode.unfocus();
+                                                    focusNode.canRequestFocus =
+                                                        false;
+                                                    setState(() {
+                                                      _showattach =
+                                                          !_showattach;
+                                                      show = false;
+                                                    });
+                                                  },
+                                                  icon: const Icon(
+                                                      Icons.attach_file)),
+                                              IconButton(
+                                                  onPressed: () {},
+                                                  icon: const Icon(
+                                                      Icons.camera_alt))
+                                            ],
+                                          ),
+                                          contentPadding:
+                                              const EdgeInsets.all(13),
+                                          hintText: "Message")))),
+                          customBox(height: 3),
+                          CircleAvatar(
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.mic)))
+                        ],
+                      ),
+                      show ? emojiSelection() : Container()
+                    ],
+                  ),
+                ),
               )
             ],
           ),
-          leadingWidth: 80,
-          leading: Row(
-            children: [
-              customBox(width: 5),
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_back,
-                    ),
-                    customBox(width: 5),
-                    CircleAvatar(
-                      backgroundColor: Colors.blueGrey,
-                      radius: 23,
-                      child: Icon(
-                        widget.chatModel.isGroup ? Icons.group : Icons.person,
-                        size: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        body: Container(
-          height: phoneHeight(context),
-          width: phoneWidth(context),
-          child: WillPopScope(
-            child: Stack(
-              children: [
-                ListView(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5, bottom: 8.0),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          child: _showattach ? options() : null,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                                width: phoneWidth(context) - 55,
-                                child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(55)),
-                                    child: TextFormField(
-                                        controller: _controller,
-                                        focusNode: focusNode,
-                                        decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            prefixIcon: IconButton(
-                                              icon: const Icon(
-                                                  Icons.emoji_emotions),
-                                              onPressed: () {
-                                                setState(() {
-                                                  focusNode.unfocus();
-                                                  focusNode.canRequestFocus =
-                                                      false;
-                                                  Future.delayed(
-                                                      Duration(seconds: 5), () {
-                                                    show = !show;
-                                                    _showattach = false;
-                                                  });
-                                                });
-                                              },
-                                            ),
-                                            suffixIcon: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {
-                                                      focusNode.unfocus();
-                                                      focusNode
-                                                              .canRequestFocus =
-                                                          false;
-                                                      setState(() {
-                                                        _showattach =
-                                                            !_showattach;
-                                                        show = false;
-                                                      });
-                                                    },
-                                                    icon: const Icon(
-                                                        Icons.attach_file)),
-                                                IconButton(
-                                                    onPressed: () {},
-                                                    icon: const Icon(
-                                                        Icons.camera_alt))
-                                              ],
-                                            ),
-                                            contentPadding:
-                                                const EdgeInsets.all(13),
-                                            hintText: "Message")))),
-                            customBox(height: 3),
-                            CircleAvatar(
-                                child: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.mic)))
-                          ],
-                        ),
-                        show ? emojiSelection() : Container()
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-            onWillPop: () {
-              if (show) {
-                setState(() {
-                  show = false;
-                });
-              } else if (_showattach) {
-                setState(() {
-                  _showattach = false;
-                });
-              } else {
-                Navigator.pop(context);
-              }
-              return Future.value(false);
-            },
-          ),
+          onWillPop: () {
+            if (show) {
+              setState(() {
+                show = false;
+              });
+            } else if (_showattach) {
+              setState(() {
+                _showattach = false;
+              });
+            } else {
+              Navigator.pop(context);
+            }
+            return Future.value(false);
+          },
         ),
       ),
     );

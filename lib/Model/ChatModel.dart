@@ -4,11 +4,8 @@ class ChatModel {
   String time;
   bool isGroup;
   bool allRead;
-  ChatModel({
-    required this.name,
-    required this.lastMsg,
-    required this.time,
-    required this.isGroup,
-    required this.allRead
-  });
+  bool? isContact;
+  String? bio;
+  ChatModel(this.name, this.lastMsg, this.time, this.isGroup, this.allRead,
+      [this.isContact = false, this.bio = ""]);
 }
