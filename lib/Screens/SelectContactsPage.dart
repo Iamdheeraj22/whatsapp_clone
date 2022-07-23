@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/ContactCard.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Model/ChatModel.dart';
+import 'package:whatsapp_clone/Screens/ContactsHelpPage.dart';
 
 class SelectContactsPage extends StatefulWidget {
   SelectContactsPage({Key? key}) : super(key: key);
@@ -31,12 +32,19 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
       appBar: AppBar(
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-          PopupMenuButton(itemBuilder: (context) {
+          PopupMenuButton(onSelected: (value) {
+            if (value == 3) {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ContactsHelpPage()));
+            }
+          }, itemBuilder: (context) {
             return [
-              PopupMenuItem(child: Text("Invite a friend")),
-              PopupMenuItem(child: Text("Contacts")),
-              PopupMenuItem(child: Text("Refresh")),
-              PopupMenuItem(child: Text("Help")),
+              PopupMenuItem(
+                  value: Icons.signal_cellular_0_bar_rounded,
+                  child: Text("Invite a friend")),
+              PopupMenuItem(value: 1, child: Text("Contacts")),
+              PopupMenuItem(value: 2, child: Text("Refresh")),
+              PopupMenuItem(value: 3, child: Text("Help")),
             ];
           })
         ],
