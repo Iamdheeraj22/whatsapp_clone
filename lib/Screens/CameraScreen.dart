@@ -1,0 +1,87 @@
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+
+List<CameraDescription>? list;
+
+class CameraScreen extends StatefulWidget {
+  CameraScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CameraScreen> createState() => _CameraScreenState();
+}
+
+class _CameraScreenState extends State<CameraScreen> {
+  CameraController? _cameraController;
+  Future<void>? cameraValue;
+  @override
+  void initState() {
+    super.initState();
+    _cameraController = CameraController(list![0], ResolutionPreset.high);
+    cameraValue = _cameraController!.initialize();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        FutureBuilder(
+            future: cameraValue,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Container(
+                    width: phoneWidth(context),
+                    child: CameraPreview(_cameraController!));
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            margin: EdgeInsets.only(bottom: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.flash_off,
+                            color: Colors.white,
+                            size: 28,
+                          )),
+                      InkWell(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.panorama_fish_eye,
+                            color: Colors.white,
+                            size: 70,
+                          )),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.flip_camera_ios,
+                            color: Colors.white,
+                            size: 28,
+                          ))
+                    ]),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    "Hold for video and Tap for photo",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
