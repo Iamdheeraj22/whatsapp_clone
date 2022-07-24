@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/CameraPhotoVideoViewPage.dart';
 
 List<CameraDescription>? list;
 
@@ -19,6 +25,13 @@ class _CameraScreenState extends State<CameraScreen> {
     super.initState();
     _cameraController = CameraController(list![0], ResolutionPreset.high);
     cameraValue = _cameraController!.initialize();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _cameraController!.dispose();
   }
 
   @override
@@ -56,7 +69,9 @@ class _CameraScreenState extends State<CameraScreen> {
                             size: 28,
                           )),
                       InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            takePhoto(context);
+                          },
                           child: Icon(
                             Icons.panorama_fish_eye,
                             color: Colors.white,
@@ -83,5 +98,16 @@ class _CameraScreenState extends State<CameraScreen> {
         )
       ],
     );
+  }
+
+  void takePhoto(BuildContext context) async {
+    final image = await _cameraController!.takePicture();
+    if (!mounted) return;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CameraPhotoVideoViewPage(
+                  imagePath: image.path,
+                )));
   }
 }
