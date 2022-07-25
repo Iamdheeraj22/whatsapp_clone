@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/CameraPhotoVideoViewPage.dart';
+import 'package:whatsapp_clone/Screens/CameraVideoView.dart';
 
 List<CameraDescription>? list;
 
@@ -20,6 +21,8 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   CameraController? _cameraController;
   Future<void>? cameraValue;
+  bool _isRecording = false;
+  String videoUrl = "";
   @override
   void initState() {
     super.initState();
@@ -29,7 +32,6 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _cameraController!.dispose();
   }
@@ -63,29 +65,54 @@ class _CameraScreenState extends State<CameraScreen> {
                     children: [
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.flash_off,
                             color: Colors.white,
                             size: 28,
                           )),
-                      InkWell(
-                          onTap: () {
-                            takePhoto(context);
+                      GestureDetector(
+                          onLongPress: () async {
+                            await _cameraController!.startVideoRecording();
+                            setState(() {
+                              _isRecording = true;
+                            });
                           },
-                          child: Icon(
-                            Icons.panorama_fish_eye,
-                            color: Colors.white,
-                            size: 70,
-                          )),
+                          onLongPressUp: () async {
+                            XFile videopath =
+                                await _cameraController!.stopVideoRecording();
+                            setState(() {
+                              _isRecording = false;
+                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CameraVideoView(
+                                          videoUrl: videopath.path,
+                                        )));
+                          },
+                          onTap: () {
+                            if (_isRecording == false) takePhoto(context);
+                          },
+                          child: _isRecording
+                              ? const Icon(
+                                  Icons.radio_button_on,
+                                  color: Colors.red,
+                                  size: 70,
+                                )
+                              : const Icon(
+                                  Icons.panorama_fish_eye,
+                                  color: Colors.white,
+                                  size: 70,
+                                )),
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.flip_camera_ios,
                             color: Colors.white,
                             size: 28,
                           ))
                     ]),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
                     "Hold for video and Tap for photo",
