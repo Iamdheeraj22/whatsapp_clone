@@ -97,6 +97,27 @@ class _CameraVideoView extends State<CameraVideoView> {
                       hintText: "Add caption"),
                 ),
               ),
+            ),
+            Center(
+              child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      _controller!.value.isPlaying
+                          ? _controller!.pause()
+                          : _controller!.play();
+                    });
+                  },
+                  child: CircleAvatar(
+                    radius: 33,
+                    backgroundColor: Colors.black38,
+                    child: Icon(
+                      _controller!.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      color: Colors.white,
+                      size: 50,
+                    ),
+                  )),
             )
           ],
         ),
