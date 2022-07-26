@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/CustomUI/MessageCards/OwnMessageCard.dart';
+import 'package:whatsapp_clone/CustomUI/MessageCards/ReplyMessageCard.dart';
 import 'package:whatsapp_clone/Model/ChatModel.dart';
 
 class IndividualChatScreen extends StatefulWidget {
@@ -101,7 +103,16 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
         child: WillPopScope(
           child: Stack(
             children: [
-              ListView(),
+              ListView(
+                children: [
+                  OwnMessageCard(),
+                  ReplyCard(),
+                  OwnMessageCard(),
+                  ReplyCard(),
+                  OwnMessageCard(),
+                  ReplyCard()
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 5, bottom: 8.0),
                 child: Align(
