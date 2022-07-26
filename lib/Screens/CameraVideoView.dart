@@ -80,8 +80,8 @@ class _CameraVideoView extends State<CameraVideoView> {
               child: Container(
                 color: Colors.black38,
                 width: phoneWidth(context),
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                child: TextField(
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                child: const TextField(
                   maxLines: null,
                   style: TextStyle(color: Colors.white, fontSize: 17),
                   decoration: InputDecoration(

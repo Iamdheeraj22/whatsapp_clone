@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,10 @@ class _CameraScreenState extends State<CameraScreen> {
   CameraController? _cameraController;
   Future<void>? cameraValue;
   bool _isRecording = false;
+  bool flash = false;
+  bool isFrontCamera = false;
   String videoUrl = "";
+  double angle = 0;
   @override
   void initState() {
     super.initState();
@@ -64,9 +68,18 @@ class _CameraScreenState extends State<CameraScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.flash_off,
+                          onPressed: () {
+                            setState(() {
+                              flash = !flash;
+                            });
+                            flash
+                                ? _cameraController!
+                                    .setFlashMode(FlashMode.torch)
+                                : _cameraController!
+                                    .setFlashMode(FlashMode.off);
+                          },
+                          icon: Icon(
+                            flash ? Icons.flash_on : Icons.flash_off,
                             color: Colors.white,
                             size: 28,
                           )),
@@ -105,11 +118,23 @@ class _CameraScreenState extends State<CameraScreen> {
                                   size: 70,
                                 )),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.flip_camera_ios,
-                            color: Colors.white,
-                            size: 28,
+                          onPressed: () {
+                            setState(() {
+                              isFrontCamera = !isFrontCamera;
+                              angle = angle + pi;
+                            });
+                            int position = isFrontCamera ? 1 : 0;
+                            _cameraController = CameraController(
+                                list![position], ResolutionPreset.high);
+                            cameraValue = _cameraController!.initialize();
+                          },
+                          icon: Transform.rotate(
+                            angle: angle,
+                            child: Icon(
+                              Icons.flip_camera_ios,
+                              color: Colors.white,
+                              size: 28,
+                            ),
                           ))
                     ]),
                 const Padding(
@@ -123,7 +148,6 @@ class _CameraScreenState extends State<CameraScreen> {
             ),
           ),
         ),
-        
       ],
     );
   }
