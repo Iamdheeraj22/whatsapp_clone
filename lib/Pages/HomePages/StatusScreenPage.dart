@@ -46,15 +46,13 @@ class _StatusScreenPageState extends State<StatusScreenPage> {
           OtherStatus(
             name: "Yogesh",
             time: "Today, 8:07 PM",
+            seen: false,
+            totalNum: 3,
           ),
           OtherStatus(
-            name: "Mohit",
-            time: "Today, 8:07 PM",
-          ),
+              name: "Mohit", time: "Today, 8:07 PM", seen: false, totalNum: 2),
           OtherStatus(
-            name: "Mukesh",
-            time: "Today, 8:07 PM",
-          ),
+              name: "Mukesh", time: "Today, 8:07 PM", seen: false, totalNum: 4),
           InkWell(
             onTap: () {
               setState(() {
@@ -70,7 +68,32 @@ class _StatusScreenPageState extends State<StatusScreenPage> {
               )
             ]),
           ),
-          customBox(width: 20)
+          Container(
+            color: Color.fromARGB(255, 226, 226, 226),
+            child: Visibility(
+                visible: isMutedShow,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    OtherStatus(
+                      name: "Yogesh",
+                      time: "Today, 8:07 PM",
+                      seen: true,
+                      totalNum: 3,
+                    ),
+                    OtherStatus(
+                        name: "Mohit",
+                        time: "Today, 8:07 PM",
+                        seen: true,
+                        totalNum: 2),
+                    OtherStatus(
+                        name: "Mukesh",
+                        time: "Today, 8:07 PM",
+                        seen: false,
+                        totalNum: 4),
+                  ],
+                )),
+          )
         ],
       )),
     );
