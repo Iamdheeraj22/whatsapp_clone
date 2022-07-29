@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/Screens/Homescreen.dart';
 import 'package:whatsapp_clone/Screens/CameraScreen.dart';
+import 'package:whatsapp_clone/Screens/LandingPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(secondary: Colors.blueAccent[500])),
       debugShowCheckedModeBanner: false,
-      home: HomescreenPage(),
+      home: LandingPage(),
     );
   }
 }
