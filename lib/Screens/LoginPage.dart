@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Model/CountryModel.dart';
 import 'package:whatsapp_clone/Screens/CountryPage.dart';
+import 'package:whatsapp_clone/Screens/VerificationPage.dart';
 
 class LoginPageScreen extends StatefulWidget {
   LoginPageScreen({Key? key}) : super(key: key);
@@ -33,7 +34,9 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 color: Colors.black,
               ),
               itemBuilder: (context) {
-                return [];
+                return [
+                  PopupMenuItem(child: Text("View contact")),
+                ];
               })
         ],
       ),
@@ -58,7 +61,12 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                   customBox(height: 15),
                   customCountryCodePicker(),
                   customBox(height: 10),
-                  countryCodePhoneNumber()
+                  countryCodePhoneNumber(),
+                  customBox(height: 20),
+                  Text(
+                    "Carrier charges may apply",
+                    style: TextStyle(color: Colors.grey),
+                  )
                 ],
               ),
             ),
@@ -212,7 +220,9 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                     Row(
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           child: Text(
                             "EDIT",
                             style: TextStyle(color: Colors.teal, fontSize: 17),
@@ -220,7 +230,16 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                         ),
                         Spacer(),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VerificationPage(
+                                          countryCode: countryCode,
+                                          phoneNumber: phoneNumber,
+                                        )));
+                          },
                           child: Text(
                             "OK",
                             style: TextStyle(color: Colors.teal, fontSize: 17),
