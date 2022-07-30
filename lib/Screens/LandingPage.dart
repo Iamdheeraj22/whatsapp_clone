@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/LoginPage.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key? key}) : super(key: key);
@@ -50,7 +51,10 @@ class _LandingPageState extends State<LandingPage> {
         ),
         customBox(height: 20),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginPageScreen()));
+          },
           child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.only(
