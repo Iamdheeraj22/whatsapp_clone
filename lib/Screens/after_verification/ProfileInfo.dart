@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/after_verification/InitilisingPage.dart';
 
 class ProfileInfoPage extends StatefulWidget {
   ProfileInfoPage({Key? key}) : super(key: key);
@@ -156,7 +157,9 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                       child: Row(
                         children: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                               child: Text(
                                 "NOT NOW",
                                 style: TextStyle(
@@ -164,7 +167,13 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                                     fontWeight: FontWeight.bold),
                               )),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (builder) =>
+                                            InitialisingPage()));
+                              },
                               child: Text(
                                 "CONTINUE",
                                 style: TextStyle(
