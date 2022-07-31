@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/after_verification/ProfileInfo.dart';
 
 class VerificationPage extends StatefulWidget {
   String phoneNumber = "";
@@ -44,66 +45,87 @@ class _VerificationPageState extends State<VerificationPage> {
       body: Container(
         height: phoneHeight(context),
         width: phoneWidth(context),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            customBox(height: 20),
-            Text("Waiting to automatically detect an SMS sent to"),
-            customBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "${widget.countryCode}  ${widget.phoneNumber}",
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                customBox(height: 20),
+                Text("Waiting to automatically detect an SMS sent to"),
+                customBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${widget.countryCode}  ${widget.phoneNumber}",
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    InkWell(
+                        onTap: () {},
+                        child: Text(
+                          "  Wrong number?",
+                          style: TextStyle(color: Colors.teal),
+                        )),
+                  ],
                 ),
-                InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "  Wrong number?",
-                      style: TextStyle(color: Colors.teal),
-                    )),
+                customBox(height: 25),
+                otpField(),
+                customBox(height: 20),
+                Text(
+                  "Enter 6-digit code",
+                  style: TextStyle(color: Colors.grey),
+                ),
+                customBox(height: 20),
+                Container(
+                  width: phoneWidth(context) - 60,
+                  child: Column(children: [
+                    InkWell(
+                      onTap: () {},
+                      child: const ListTile(
+                        leading: Icon(
+                          Icons.message,
+                          color: Colors.teal,
+                        ),
+                        title: Text(
+                          "Resend SMS",
+                          style: TextStyle(color: Colors.teal, fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: const ListTile(
+                        leading: Icon(
+                          Icons.call,
+                          color: Colors.teal,
+                        ),
+                        title: Text(
+                          "Call me",
+                          style: TextStyle(color: Colors.teal, fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ]),
+                )
               ],
             ),
-            customBox(height: 25),
-            otpField(),
-            customBox(height: 20),
-            Text(
-              "Enter 6-digit code",
-              style: TextStyle(color: Colors.grey),
-            ),
-            customBox(height: 20),
-            Container(
-              width: phoneWidth(context) - 60,
-              child: Column(children: [
-                InkWell(
-                  onTap: () {},
-                  child: const ListTile(
-                    leading: Icon(
-                      Icons.message,
-                      color: Colors.teal,
-                    ),
-                    title: Text(
-                      "Resend SMS",
-                      style: TextStyle(color: Colors.teal, fontSize: 16),
-                    ),
-                  ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (builder) => ProfileInfoPage()));
+              },
+              child: Container(
+                color: Colors.teal,
+                margin: EdgeInsets.only(bottom: 50),
+                padding:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 30, left: 30),
+                child: Text(
+                  "Verify",
+                  style: TextStyle(color: Colors.white),
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: const ListTile(
-                    leading: Icon(
-                      Icons.call,
-                      color: Colors.teal,
-                    ),
-                    title: Text(
-                      "Call me",
-                      style: TextStyle(color: Colors.teal, fontSize: 16),
-                    ),
-                  ),
-                ),
-              ]),
+              ),
             )
           ],
         ),
