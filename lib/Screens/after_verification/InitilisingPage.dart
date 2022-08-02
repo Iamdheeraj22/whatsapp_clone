@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/Homescreen.dart';
 
 class InitialisingPage extends StatefulWidget {
   InitialisingPage({Key? key}) : super(key: key);
@@ -9,6 +12,15 @@ class InitialisingPage extends StatefulWidget {
 }
 
 class _InitialisingPageState extends State<InitialisingPage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 3), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (builder) => HomescreenPage()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

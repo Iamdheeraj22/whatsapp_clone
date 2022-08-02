@@ -24,6 +24,7 @@ class _HomescreenPageState extends State<HomescreenPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("Whatsapp Clone"),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
