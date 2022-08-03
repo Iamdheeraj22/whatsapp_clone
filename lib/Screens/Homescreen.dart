@@ -3,6 +3,7 @@ import 'package:whatsapp_clone/Pages/HomePages/CallsScreenPage.dart';
 import 'package:whatsapp_clone/Pages/HomePages/CameraPage.dart';
 import 'package:whatsapp_clone/Pages/HomePages/ChatScreenPage.dart';
 import 'package:whatsapp_clone/Pages/HomePages/StatusScreenPage.dart';
+import 'package:whatsapp_clone/Screens/SettingsPage.dart';
 
 class HomescreenPage extends StatefulWidget {
   HomescreenPage({Key? key}) : super(key: key);
@@ -28,14 +29,19 @@ class _HomescreenPageState extends State<HomescreenPage>
         title: Text("Whatsapp Clone"),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-          PopupMenuButton(itemBuilder: (context) {
+          PopupMenuButton(onSelected: (index) {
+            if (index == 6) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (builder) => SettingsPage()));
+            }
+          }, itemBuilder: (context) {
             return [
-              PopupMenuItem(child: Text("New group")),
-              PopupMenuItem(child: Text("New broadcast")),
-              PopupMenuItem(child: Text("Linked devices")),
-              PopupMenuItem(child: Text("Starred messages")),
-              PopupMenuItem(child: Text("Payments")),
-              PopupMenuItem(child: Text("Settings"))
+              PopupMenuItem(value: 1, child: Text("New group")),
+              PopupMenuItem(value: 2, child: Text("New broadcast")),
+              PopupMenuItem(value: 3, child: Text("Linked devices")),
+              PopupMenuItem(value: 4, child: Text("Starred messages")),
+              PopupMenuItem(value: 5, child: Text("Payments")),
+              PopupMenuItem(value: 6, child: Text("Settings"))
             ];
           })
         ],
