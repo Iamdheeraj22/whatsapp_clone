@@ -3,7 +3,7 @@ import 'package:whatsapp_clone/Pages/HomePages/CallsScreenPage.dart';
 import 'package:whatsapp_clone/Pages/HomePages/CameraPage.dart';
 import 'package:whatsapp_clone/Pages/HomePages/ChatScreenPage.dart';
 import 'package:whatsapp_clone/Pages/HomePages/StatusScreenPage.dart';
-import 'package:whatsapp_clone/Screens/SettingsPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/SettingsPage.dart';
 
 class HomescreenPage extends StatefulWidget {
   HomescreenPage({Key? key}) : super(key: key);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -41,6 +43,12 @@ class _SettingsPageState extends State<SettingsPage> {
 
           //account
           ListTile(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (builder) => ProfileAccountPage()));
+              },
               leading: Padding(
                 padding: EdgeInsets.only(top: 6),
                 child: Image.asset(
