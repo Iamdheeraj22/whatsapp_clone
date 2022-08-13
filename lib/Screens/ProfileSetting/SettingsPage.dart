@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -40,7 +41,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 IconButton(onPressed: () {}, icon: const Icon(Icons.qr_code)),
           ),
           customBox(height: 10),
-
           //account
           ListTile(
               onTap: () {
@@ -132,13 +132,13 @@ class _SettingsPageState extends State<SettingsPage> {
               )),
           //Help
           ListTile(
-              leading: Padding(
-                padding: EdgeInsets.only(top: 6),
-                child: Image.asset(
-                  "assets/key.png",
-                  color: Colors.grey,
-                  height: 30,
-                ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => HelpPage()));
+              },
+              leading: const Padding(
+                padding: const EdgeInsets.only(left: 7),
+                child: Icon(Icons.question_mark),
               ),
               title: const Text(
                 "Help",

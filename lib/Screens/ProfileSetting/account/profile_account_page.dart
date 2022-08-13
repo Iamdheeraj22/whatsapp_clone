@@ -30,6 +30,7 @@ class _ProfileState extends State<ProfileAccountPage> {
             leading: const Icon(
               Icons.lock,
               color: Colors.grey,
+              size: 30,
             ),
             title: const Text("Privacy"),
           ),
@@ -38,6 +39,7 @@ class _ProfileState extends State<ProfileAccountPage> {
             leading: const Icon(
               Icons.shield,
               color: Colors.grey,
+              size: 30,
             ),
             title: const Text("Security"),
           ),
