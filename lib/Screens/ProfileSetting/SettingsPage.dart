@@ -113,23 +113,28 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               )),
           //app language
-          ListTile(
-              leading: Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Image.asset(
-                  "assets/earth.png",
-                  color: Colors.grey,
-                  height: 30,
+          InkWell(
+            onTap: () {
+              openBottomsheet();
+            },
+            child: ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Image.asset(
+                    "assets/earth.png",
+                    color: Colors.grey,
+                    height: 30,
+                  ),
                 ),
-              ),
-              title: const Text(
-                "App language",
-                style: TextStyle(color: Colors.black, fontSize: 14),
-              ),
-              subtitle: const Text(
-                "English(phone's language)",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              )),
+                title: const Text(
+                  "App language",
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                ),
+                subtitle: const Text(
+                  "English(phone's language)",
+                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                )),
+          ),
           //Help
           ListTile(
               onTap: () {
@@ -160,5 +165,72 @@ class _SettingsPageState extends State<SettingsPage> {
         ]),
       ),
     );
+  }
+
+  //Dragable Bottomsheet
+  openBottomsheet() {
+    showModalBottomSheet(
+        enableDrag: true,
+        isScrollControlled: true,
+        context: context,
+        clipBehavior: Clip.antiAlias,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10.0),
+            topRight: Radius.circular(10.0),
+          ),
+        ),
+        builder: (builder) {
+          return StatefulBuilder(builder: (context, state) {
+            return Container(
+              width: phoneWidth(context),
+              child: Column(
+                children: [
+                  Container(
+                      margin: const EdgeInsets.only(top: 7),
+                      alignment: Alignment.center,
+                      height: 5,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(5),
+                      )),
+                  customBox(height: 5),
+                  ListTile(
+                    leading: InkWell(
+                      child: Icon(Icons.close),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    title: const Text(
+                      "App language",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
+                    ),
+                  ),
+                  customBox(height: 3),
+                  Container(
+                    height: 0.7,
+                    color: Colors.grey,
+                  ),
+                  Flexible(
+                    child: ListView.builder(
+                        itemCount: 20,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: Radio(
+                                value: 1, groupValue: -1, onChanged: (v) {}),
+                            title: Text("English"),
+                          );
+                        }),
+                  )
+                ],
+              ),
+            );
+          });
+        });
   }
 }

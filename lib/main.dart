@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(secondary: Colors.blueAccent[500])),
       debugShowCheckedModeBanner: false,
-      home: LandingPage(),
+      home: Scaffold(body: LandingPage()),
     );
   }
 }
