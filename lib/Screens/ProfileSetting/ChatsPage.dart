@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatBackupSettingPage.dart';
 
 class ChatsPage extends StatefulWidget {
   ChatsPage({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class ChatsPage extends StatefulWidget {
 }
 
 class _ChatsPageState extends State<ChatsPage> {
+  var groupValue = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +38,9 @@ class _ChatsPageState extends State<ChatsPage> {
               ),
               customBox(height: 5),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  showThemeDialogbox();
+                },
                 leading: const Padding(
                   padding: EdgeInsets.only(top: 8),
                   child: Icon(
@@ -102,7 +106,9 @@ class _ChatsPageState extends State<ChatsPage> {
                 trailing: Switch(value: false, onChanged: (v) {}),
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  showFontSize();
+                },
                 leading: const Icon(
                   Icons.abc,
                   color: Colors.white,
@@ -142,7 +148,12 @@ class _ChatsPageState extends State<ChatsPage> {
               ),
               customBox(height: 10),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => ChatBackupSettingPage()));
+                },
                 leading: const Icon(
                   Icons.backup,
                   size: 25,
@@ -169,5 +180,189 @@ class _ChatsPageState extends State<ChatsPage> {
         ),
       ),
     );
+  }
+
+  showThemeDialogbox() {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.only(left: 20, right: 10, bottom: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    customBox(height: 20),
+                    const Text(
+                      "Choose Theme",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                    customBox(height: 5),
+                    Row(
+                      children: [
+                        Radio(
+                            value: groupValue == 0 ? true : false,
+                            groupValue: groupValue,
+                            onChanged: (v) {
+                              setState(() {
+                                groupValue = 0;
+                              });
+                            }),
+                        customBox(width: 10),
+                        const Text(
+                          "System default",
+                          style: TextStyle(fontSize: 14),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Radio(
+                            value: groupValue == 1 ? true : false,
+                            groupValue: groupValue,
+                            onChanged: (v) {
+                              setState(() {
+                                groupValue = 1;
+                              });
+                            }),
+                        customBox(width: 10),
+                        const Text(
+                          "Light",
+                          style: TextStyle(fontSize: 14),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Radio(
+                            value: groupValue == 2 ? true : false,
+                            groupValue: groupValue,
+                            onChanged: (v) {
+                              state() {
+                                groupValue = 2;
+                              }
+                            }),
+                        customBox(width: 10),
+                        const Text(
+                          "Dark",
+                          style: TextStyle(fontSize: 14),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Spacer(),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              "CANCEL",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.teal),
+                            )),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              "OK",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.teal),
+                            ))
+                      ],
+                    )
+                  ],
+                ),
+              ));
+        });
+  }
+
+  showFontSize() {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 10, bottom: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        customBox(height: 20),
+                        const Text(
+                          "Font Size",
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                        customBox(height: 5),
+                        Row(
+                          children: [
+                            Radio(
+                                value: false,
+                                groupValue: groupValue,
+                                onChanged: (v) {
+                                  setState(() {
+                                    groupValue = 0;
+                                  });
+                                }),
+                            customBox(width: 10),
+                            const Text(
+                              "Small",
+                              style: TextStyle(fontSize: 14),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                                value: false,
+                                groupValue: groupValue,
+                                onChanged: (v) {
+                                  setState(() {
+                                    groupValue = 1;
+                                  });
+                                }),
+                            customBox(width: 10),
+                            const Text(
+                              "Medium",
+                              style: TextStyle(fontSize: 14),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                                value: false,
+                                groupValue: groupValue,
+                                onChanged: (v) {
+                                  state() {
+                                    groupValue = 2;
+                                  }
+                                }),
+                            customBox(width: 10),
+                            const Text(
+                              "Large",
+                              style: TextStyle(fontSize: 14),
+                            )
+                          ],
+                        ),
+                      ])));
+        });
   }
 }
