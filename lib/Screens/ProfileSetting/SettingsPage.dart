@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
@@ -67,7 +68,10 @@ class _SettingsPageState extends State<SettingsPage> {
               )),
           //Chats
           ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => ChatsPage()));
+              },
               leading: const Padding(
                   padding: EdgeInsets.only(top: 6),
                   child: Icon(
@@ -113,28 +117,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               )),
           //app language
-          InkWell(
-            onTap: () {
-              openBottomsheet();
-            },
-            child: ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Image.asset(
-                    "assets/earth.png",
-                    color: Colors.grey,
-                    height: 30,
-                  ),
+          ListTile(
+              onTap: () {
+                openBottomsheet();
+              },
+              leading: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Image.asset(
+                  "assets/earth.png",
+                  color: Colors.grey,
+                  height: 30,
                 ),
-                title: const Text(
-                  "App language",
-                  style: TextStyle(color: Colors.black, fontSize: 14),
-                ),
-                subtitle: const Text(
-                  "English(phone's language)",
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                )),
-          ),
+              ),
+              title: const Text(
+                "App language",
+                style: TextStyle(color: Colors.black, fontSize: 14),
+              ),
+              subtitle: const Text(
+                "English(phone's language)",
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+              )),
           //Help
           ListTile(
               onTap: () {
@@ -171,7 +173,6 @@ class _SettingsPageState extends State<SettingsPage> {
   openBottomsheet() {
     showModalBottomSheet(
         enableDrag: true,
-        isScrollControlled: true,
         context: context,
         clipBehavior: Clip.antiAlias,
         shape: const RoundedRectangleBorder(
