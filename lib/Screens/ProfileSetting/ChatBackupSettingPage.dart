@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/EndToEndEncryption.dart';
 
 class ChatBackupSettingPage extends StatefulWidget {
   ChatBackupSettingPage({Key? key}) : super(key: key);
@@ -89,7 +90,12 @@ class _ChatBackupState extends State<ChatBackupSettingPage> {
               ),
               customBox(height: 15),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => EndToEndEncryptionPage()));
+                },
                 leading: const Icon(Icons.lock),
                 title: const Text(
                   "End-to-end encrypted backup",
