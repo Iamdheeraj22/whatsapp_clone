@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/ChatBackupSettingPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatHistory.dart';
 
 class ChatsPage extends StatefulWidget {
   ChatsPage({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class _ChatsPageState extends State<ChatsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         elevation: 0,
         automaticallyImplyLeading: true,
         title: const Text(
@@ -165,7 +167,12 @@ class _ChatsPageState extends State<ChatsPage> {
               ),
               customBox(height: 5),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ChatHistoryPage()));
+                },
                 leading: const Icon(
                   Icons.history,
                   size: 25,
