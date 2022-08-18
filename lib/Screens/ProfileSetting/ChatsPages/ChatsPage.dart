@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/ChatBackupSettingPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/ChatHistory.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatBackupSettingPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatHistory.dart';
 
 class ChatsPage extends StatefulWidget {
   ChatsPage({Key? key}) : super(key: key);

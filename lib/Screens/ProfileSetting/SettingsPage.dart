@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/NotificationsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -89,7 +90,12 @@ class _SettingsPageState extends State<SettingsPage> {
               )),
           //Notifications
           ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (builder) => NotificationsPage()));
+              },
               leading: const Padding(
                   padding: EdgeInsets.only(top: 6),
                   child: Icon(
