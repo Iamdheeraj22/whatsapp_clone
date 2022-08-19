@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/Profile/AboutPage.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key}) : super(key: key);
@@ -7,6 +8,7 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
+//
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => AboutPage()));
+              },
               leading: const Icon(Icons.info),
               title: const Text(
                 "About",

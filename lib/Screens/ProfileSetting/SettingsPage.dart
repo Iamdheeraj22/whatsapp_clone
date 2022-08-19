@@ -4,7 +4,7 @@ import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/NotificationsPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/ProfilePage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/Profile/ProfilePage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/Storage/StorageDataPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
