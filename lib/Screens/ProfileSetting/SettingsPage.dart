@@ -4,7 +4,8 @@ import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/NotificationsPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/StorageDataPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ProfilePage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/Storage/StorageDataPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -32,6 +33,10 @@ class _SettingsPageState extends State<SettingsPage> {
         child: ListView(children: [
           customBox(height: 10),
           ListTile(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
+            },
             leading: CircleAvatar(
               radius: 30,
               backgroundImage: AssetImage("assets/1.jpeg"),
