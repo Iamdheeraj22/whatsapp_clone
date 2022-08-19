@@ -4,6 +4,7 @@ import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/NotificationsPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/StorageDataPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -112,9 +113,18 @@ class _SettingsPageState extends State<SettingsPage> {
               )),
           //Storage and data
           ListTile(
-              onTap: () {},
-              leading: const Padding(
-                  padding: EdgeInsets.only(top: 6), child: Icon(Icons.storage)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => StorageDataPage()));
+              },
+              leading: Padding(
+                  padding: EdgeInsets.only(top: 6),
+                  child: Image.asset(
+                    "assets/storage_graph.png",
+                    height: 30,
+                    width: 30,
+                    color: Colors.grey,
+                  )),
               title: const Text(
                 "Storage and data",
                 style: TextStyle(color: Colors.black, fontSize: 14),
