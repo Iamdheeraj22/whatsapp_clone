@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChangeNumber/ChangeNumberIntroPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/Profile/AboutPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/Profile/ProfilePhoto.dart';
 
@@ -127,7 +128,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (builder) => ChangePhoneNumberIntroduction()));
+              },
               leading: const Icon(Icons.call),
               title: const Text(
                 "Phone",
