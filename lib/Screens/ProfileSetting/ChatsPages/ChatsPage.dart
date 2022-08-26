@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ArchiveChatsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatBackupSettingPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/ChatsPages/ChatHistory.dart';
 
@@ -133,7 +134,12 @@ class _ChatsPageState extends State<ChatsPage> {
               ),
               customBox(height: 10),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => ArchiveChatsPage()));
+                },
                 leading: const Icon(
                   Icons.abc,
                   color: Colors.white,

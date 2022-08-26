@@ -108,6 +108,7 @@ class _NotifyChangeNumberPageState extends State<NotifyChangeNumberPage> {
   notifyOption() {
     return Column(children: [
       RadioListTile(
+        activeColor: Colors.teal,
         value: 0,
         groupValue: groupValue,
         onChanged: (v) {
@@ -118,6 +119,7 @@ class _NotifyChangeNumberPageState extends State<NotifyChangeNumberPage> {
         title: Text("All contacts"),
       ),
       RadioListTile(
+        activeColor: Colors.teal,
         value: 1,
         groupValue: groupValue,
         onChanged: (v) {
@@ -128,6 +130,7 @@ class _NotifyChangeNumberPageState extends State<NotifyChangeNumberPage> {
         title: Text("Contacts I have chats with"),
       ),
       RadioListTile(
+        activeColor: Colors.teal,
         value: 2,
         groupValue: groupValue,
         onChanged: (v) {
