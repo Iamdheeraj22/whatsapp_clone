@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacySettingPage.dart';
 
 class ProfileAccountPage extends StatefulWidget {
   ProfileAccountPage({Key? key}) : super(key: key);
@@ -8,11 +9,13 @@ class ProfileAccountPage extends StatefulWidget {
   State<ProfileAccountPage> createState() => _ProfileState();
 }
 
+//
 class _ProfileState extends State<ProfileAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         elevation: 0,
         automaticallyImplyLeading: true,
         title: const Text(
@@ -26,7 +29,12 @@ class _ProfileState extends State<ProfileAccountPage> {
         child: Column(children: [
           customBox(height: 10),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => PrivacySettingPage()));
+            },
             leading: const Icon(
               Icons.lock,
               color: Colors.grey,
