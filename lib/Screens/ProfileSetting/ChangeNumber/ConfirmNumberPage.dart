@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/ChangeNumber/NotifyChangeNumberPage.dart';
 
 class ConfirmNumberPage extends StatefulWidget {
   ConfirmNumberPage({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class ConfirmNumberPage extends StatefulWidget {
 
 class _ConfirmNumberPageState extends State<ConfirmNumberPage> {
   var coounterNumber = "";
+  var _oldController = "";
+  var _newController = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +41,13 @@ class _ConfirmNumberPageState extends State<ConfirmNumberPage> {
                   Text("Enter your old phone number with country code:"),
                   customBox(height: 10),
                   TextField(
+                      keyboardType: TextInputType.number,
+                      maxLength: 10,
                       style: TextStyle(fontSize: 13, color: Colors.grey),
                       onChanged: (v) {
-                        setState(() {});
+                        setState(() {
+                          _oldController = v.toString();
+                        });
                       },
                       decoration: const InputDecoration(
                         hintText: "old phone number",
@@ -55,9 +62,13 @@ class _ConfirmNumberPageState extends State<ConfirmNumberPage> {
                   Text("Enter your new phone number with country code:"),
                   customBox(height: 10),
                   TextField(
+                      keyboardType: TextInputType.number,
+                      maxLength: 10,
                       style: TextStyle(fontSize: 13, color: Colors.grey),
                       onChanged: (v) {
-                        setState(() {});
+                        setState(() {
+                          _newController = v.toString();
+                        });
                       },
                       decoration: const InputDecoration(
                         hintText: "new phone number",
@@ -73,7 +84,11 @@ class _ConfirmNumberPageState extends State<ConfirmNumberPage> {
               InkWell(
                 onHover: (v) {},
                 onTap: () {
-                  showChooseMediaOptions();
+                  //showChooseMediaOptions();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => NotifyChangeNumberPage()));
                 },
                 child: Container(
                   margin: EdgeInsets.only(bottom: 30),
