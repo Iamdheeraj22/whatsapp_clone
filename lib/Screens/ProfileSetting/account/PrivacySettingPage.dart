@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/BlockContactsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/DefaultMessageTimer.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/LiveLocationPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyOptionPage.dart';
 
 class PrivacySettingPage extends StatefulWidget {
@@ -123,8 +124,13 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
                 ),
               ),
               ListTile(
-                onTap: () {},
-                title: Text(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => LiveLocationPage()));
+                },
+                title: const Text(
                   "Live Location",
                   style: TextStyle(
                     fontSize: 13.5,
@@ -144,7 +150,7 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
                       MaterialPageRoute(
                           builder: (builder) => BlockContactsPage()));
                 },
-                title: Text(
+                title:const Text(
                   "Blocked Contacts",
                   style: TextStyle(
                     fontSize: 13.5,
