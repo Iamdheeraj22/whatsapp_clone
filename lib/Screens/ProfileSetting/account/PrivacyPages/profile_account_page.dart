@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/PrivacySettingPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/RequestAccountInfo.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/SecurityPage.dart';
 
 class ProfileAccountPage extends StatefulWidget {
@@ -84,7 +85,12 @@ class _ProfileState extends State<ProfileAccountPage> {
             title: const Text("Change number"),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => RequestAccountInfo()));
+            },
             leading: Image.asset(
               "assets/excel.png",
               height: 30,
