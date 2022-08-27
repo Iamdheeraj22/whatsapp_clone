@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/BlockContactsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/DefaultMessageTimer.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/FingerprintLockPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/LiveLocationPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyOptionPage.dart';
 
@@ -150,7 +151,7 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
                       MaterialPageRoute(
                           builder: (builder) => BlockContactsPage()));
                 },
-                title:const Text(
+                title: const Text(
                   "Blocked Contacts",
                   style: TextStyle(
                     fontSize: 13.5,
@@ -164,7 +165,12 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
                 ),
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => FingerPrintLockPage()));
+                },
                 title: Text(
                   "Fingerprint Lock",
                   style: TextStyle(
