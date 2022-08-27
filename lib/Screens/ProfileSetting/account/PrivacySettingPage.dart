@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/DefaultMessageTimer.dart';
 
 class PrivacySettingPage extends StatefulWidget {
   PrivacySettingPage({Key? key}) : super(key: key);
@@ -70,7 +71,12 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
               ),
               customBox(height: 10),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => DefaultMessageTimer()));
+                },
                 title: const Text(
                   "Default messages timer",
                   style: TextStyle(
