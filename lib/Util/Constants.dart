@@ -3,3 +3,8 @@ const dissapearing_message =
 
 const fingerprintTitle =
     "When enabled, you'll need to use fingerprint to open Whatsapp. You can still answer calls if Whatsapp is locked.";
+
+const securityTitle1 =
+    "Messages and calls in end-to-end encrypted chats stay between you and the people you choose. Not even Whatsapp can read or listen to them.";
+const securityTitle2 =
+    "Get notified when your security code changes for a contact's phone in an end-to-end encrypted chat. If you have multiple devices, then setting must be enabled on each device where you want to get notifications.";

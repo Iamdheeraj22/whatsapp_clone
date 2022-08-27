@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacySettingPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/PrivacySettingPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/SecurityPage.dart';
 
 class ProfileAccountPage extends StatefulWidget {
   ProfileAccountPage({Key? key}) : super(key: key);
@@ -43,7 +44,10 @@ class _ProfileState extends State<ProfileAccountPage> {
             title: const Text("Privacy"),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (builder) => SecurityPage()));
+            },
             leading: const Icon(
               Icons.shield,
               color: Colors.grey,

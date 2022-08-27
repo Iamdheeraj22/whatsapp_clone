@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/BlockContactsPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/DefaultMessageTimer.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/FingerprintLockPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/LiveLocationPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyOptionPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/BlockContactsPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/DefaultMessageTimer.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/FingerprintLockPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/LiveLocationPage.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/PrivacyOptionPage.dart';
 
 class PrivacySettingPage extends StatefulWidget {
   PrivacySettingPage({Key? key}) : super(key: key);

@@ -6,7 +6,7 @@ import 'package:whatsapp_clone/Screens/ProfileSetting/HelpPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/NotificationsPage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/Profile/ProfilePage.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/Storage/StorageDataPage.dart';
-import 'package:whatsapp_clone/Screens/ProfileSetting/account/profile_account_page.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyPages/profile_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);
