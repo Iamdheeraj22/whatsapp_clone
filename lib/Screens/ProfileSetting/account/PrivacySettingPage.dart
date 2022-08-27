@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/CustomUI/CustomUI.dart';
 import 'package:whatsapp_clone/Screens/ProfileSetting/account/DefaultMessageTimer.dart';
+import 'package:whatsapp_clone/Screens/ProfileSetting/account/PrivacyOptionPage.dart';
 
 class PrivacySettingPage extends StatefulWidget {
   PrivacySettingPage({Key? key}) : super(key: key);
@@ -28,20 +29,19 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               customBox(height: 10),
-              ListTile(
-                title: const Text(
+              const ListTile(
+                title: Text(
                   "Who can see my personal info",
                   style: TextStyle(
                     fontSize: 13.5,
                   ),
                 ),
-                subtitle: const Text(
+                subtitle: Text(
                   "If you don't share your Last seen, you won't able to see other people's last Seen",
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
-                trailing: Switch(value: false, onChanged: (v) {}),
               ),
               customBox(height: 5),
               pricyOptions(),
@@ -101,7 +101,13 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
               ),
               //Groups , Block , Live locations,Fingure print lock
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) =>
+                              PrivacyOptionPage(title: "Groups", type: "4")));
+                },
                 title: Text(
                   "Groups",
                   style: TextStyle(
@@ -173,10 +179,16 @@ class _PrivacySettingPageState extends State<PrivacySettingPage> {
         itemCount: optionsList.length,
         itemBuilder: (context, index) {
           return ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => PrivacyOptionPage(
+                          title: optionsList[index], type: index.toString())));
+            },
             title: Text(
               optionsList[index],
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 13.5,
               ),
             ),
